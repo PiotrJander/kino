@@ -1,0 +1,24 @@
+{% extends 'kino/base.html' %}
+{% block body %}
+
+  <h1>Tickets for user lis – hardcoded for now!</h1>
+
+  <div class="row">
+    {% for t in tickets %}
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+          <img src="{{ t.screening.movie.poster_url }}" alt="" style="height: 350px">
+          <div class="caption">
+            <h3>{{ t.screening.movie.title }}</h3>
+            <p>
+              {{ t.screening.datetime }} <br>
+              Room {{ t.screening.room }} <br>
+              Seat {{ t.seat }}
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock body %}

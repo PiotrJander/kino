@@ -1,0 +1,35 @@
+{% extends 'kino/base.html' %}
+{% block body %}
+
+  {% if movie %}
+    <h1>Screenings for {{ movie.title }}</h1>
+  {% else %}
+    <h1>All screenings</h1>
+  {% endif %}
+
+  <div class="row">
+    {% for s in screenings %}
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+          <img src="{{ s.movie.poster_url }}" alt="" style="height: 350px">
+          <div class="caption">
+            <h3>{{ s.movie.title }}</h3>
+            <p>
+              {{ s.datetime }} <br>
+              Room {{ s.room }}
+            </p>
+            <form action="{% url 'tickets' %}" method="post">
+              {% csrf_token %}
+              <input type="number" name="screening_id" value="{{ s.id }}" hidden>
+              {# user is hardcoded to lis (id = 1)! #}
+              <input type="number" name="user_id" value="1" hidden>
+              <input type="number" name="how_many" value="1" placeholder="How many">
+              <input type="submit" value="Buy tickets">
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock body %}

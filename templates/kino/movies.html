@@ -1,0 +1,25 @@
+{% extends 'kino/base.html' %}
+{% block body %}
+
+  <h1>All movies</h1>
+
+  <div class="row">
+    {% for movie in movies %}
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+          <img src="{{ movie.poster_url }}" alt="" style="height: 350px">
+          <div class="caption">
+            <h3>{{ movie.title }}</h3>
+            <p>
+              {{ movie.director }} <br>
+              {{ movie.year }}
+            </p>
+            <p><a href="{% url 'screenings' %}?film_id={{ movie.id }}" class="btn btn-primary" role="button">View
+              screenings</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock body %}
