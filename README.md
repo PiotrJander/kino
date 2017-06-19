@@ -2,5 +2,5 @@
 
 ```
 python manage.py migrate
-python loaddata kino/fixtures/kino.json
+python manage.py loaddata kino/fixtures/kino.json
 ```
